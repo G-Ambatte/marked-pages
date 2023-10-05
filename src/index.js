@@ -7,7 +7,7 @@ export default function(options = { enable: true, regex: /^\\page$/gm }) {
       {
         name: 'pageBlock',
         level: 'block',
-        start(src) { return options.regex.exec(src); },
+        // start(src) { return options.regex.exec(src); },
         tokenizer(src, tokens) {
           const pageArray = src.split(options.regex);
 
