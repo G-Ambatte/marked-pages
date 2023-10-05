@@ -1,6 +1,6 @@
 export default function(options = { enable: true, regex: /^\\page$/gm }) {
   // extension code here
-  if(!options.enable) return false;
+  if (!options.enable) return false;
 
   return {
     extensions: [
@@ -23,9 +23,9 @@ export default function(options = { enable: true, regex: /^\\page$/gm }) {
           return token;
         },
         renderer(token) {
-            return `<div class='page'>\n${this.parser.parse(token.tokens)}</div>`;
+          return `<div class='page'>\n${this.parser.parse(token.tokens)}</div>`;
         }
       }
     ]
-  }
-};
+  };
+}
