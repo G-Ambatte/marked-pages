@@ -2,6 +2,7 @@ export default function(options = { enable: true, term: '\\\\page' }) {
   // extension code here
   if (!options.enable) return false;
 
+  /* istanbul ignore else */
   if (!options.regex) {
     options.regex = new RegExp(options.term, 'gm');
   }
