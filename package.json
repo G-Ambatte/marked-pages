@@ -1,7 +1,7 @@
 {
   "name": "marked-extension-template",
-  "version": "0.0.0",
-  "description": "marked extension template",
+  "version": "0.0.1",
+  "description": "A Marked extension for splitting the input into pages",
   "main": "./lib/index.cjs",
   "module": "./src/index.js",
   "browser": "./lib/index.umd.js",
@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markedjs/marked-extension-template.git"
+    "url": "git+https://github.com/G-Ambatte/marked-pages"
   },
-  "author": "Tony Brix <Tony@Brix.ninja> (https://Tony.Brix.ninja)",
+  "author": "Sean Robertson (g-ambatte)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/markedjs/marked-extension-template/issues"
+    "url": "https://github.com/G-Ambatte/marked-pages"
   },
-  "homepage": "https://github.com/markedjs/marked-extension-template#readme",
+  "homepage": "https://github.com/G-Ambatte/marked-pages#readme",
   "peerDependencies": {
     "marked": "^9.0.3"
   },
