@@ -8,7 +8,7 @@ describe('markedPages', () => {
 
   test('no options', () => {
     marked.use(markedPages());
-    expect(marked('example')).toBe('<div class=\'page\'>\n<p>example</p>\n</div>');
+    expect(marked('example')).toBe('<div class=\'page\' id=\'p1\'>\n<p>example</p>\n</div>');
   });
 
   test('markdown not using this extension', () => {
@@ -23,11 +23,16 @@ describe('markedPages', () => {
 
   test('markdown including \\page', () => {
     marked.use(markedPages());
-    expect(marked.parse('\\page')).toBe('<div class=\'page\'>\n</div>');
+    expect(marked.parse('\\page')).toBe('<div class=\'page\' id=\'p1\'>\n</div>');
   });
 
   test('multiple pages - lexer', () => {
     marked.use(markedPages());
-    expect(marked.lexer('this is page 1\n\\page\nthis page 2\n\\page\nthis is page 3')).toHaveLength(3);
+    expect(marked.lexer('this is page 1\n\\page\nthis is page 2\n\\page\nthis is page 3')).toHaveLength(3);
+  });
+
+  test('multiple pages - parser', () => {
+    marked.use(markedPages());
+    expect(marked.parse('this is page 1\n\\page\nthis is page 2\n\\page\nthis is page 3')).toBe('<div class=\'page\' id=\'p1\'>\n<p>this is page 1\n</p>\n</div><div class=\'page\' id=\'p2\'>\n<p>this is page 2\n</p>\n</div><div class=\'page\' id=\'p3\'>\n<p>this is page 3</p>\n</div>');
   });
 });
