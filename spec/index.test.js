@@ -16,6 +16,11 @@ describe('markedPages', () => {
     expect(marked('**standard markdown**')).toBe('<p><strong>standard markdown</strong></p>\n');
   });
 
+  test('options check', () => {
+    marked.use(markedPages());
+    expect(markedPages().options()).toHaveProperty('regex', /\\page/gm);
+  });
+
   test('lexer output', () => {
     marked.use(markedPages());
     expect(marked.lexer(' ')[0]).toHaveProperty('type', 'pageBlock');

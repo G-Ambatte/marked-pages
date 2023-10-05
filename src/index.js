@@ -1,9 +1,14 @@
-export default function(options = { enable: true, regex: /^\\page$/gm }) {
+export default function(options = { enable: true, term: '\\\\page' }) {
   // extension code here
   if (!options.enable) return false;
 
+  if (!options.regex) {
+    options.regex = new RegExp(options.term, 'gm');
+  }
+
   let pageNumber = 0;
   return {
+    options() { return options; },
     extensions: [
       {
         name: 'pageBlock',
@@ -15,7 +20,7 @@ export default function(options = { enable: true, regex: /^\\page$/gm }) {
 
           const token = {
             type: 'pageBlock',
-            raw: pageArray[0] + '\n\\page',
+            raw: pageArray[0] + options.term,
             text: pageArray[0],
             pageNumber,
             tokens: []
