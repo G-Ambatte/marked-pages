@@ -15,7 +15,7 @@ export default function(options = { enable: true, term: '\\\\page' }) {
       {
         name: 'pageBlock',
         level: 'block',
-        // start(src) { return options.regex.exec(src); },
+        start(src) { return topLevelBlock; },
         tokenizer(src, tokens) {
           if (!topLevelBlock) return false;
           const pageArray = src.split(options.regex);
