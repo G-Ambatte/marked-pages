@@ -21,9 +21,19 @@ describe('markedPages', () => {
     expect(markedPages().options()).toHaveProperty('regex', /\\page/gm);
   });
 
+  test('options check - disable page IDs', () => {
+    marked.use(markedPages({ pageIds: false }));
+    expect(markedPages().options()).toHaveProperty('pageIds', false);
+  });
+
   test('lexer output', () => {
     marked.use(markedPages());
     expect(marked.lexer(' ')[0]).toHaveProperty('type', 'pageBlock');
+  });
+
+  test('parser output', () => {
+    marked.use(markedPages());
+    expect(marked.parse(' ')).toBe('<div class=\'page\' id=\'p1\'>\n</div>');
   });
 
   test('markdown including \\page', () => {
