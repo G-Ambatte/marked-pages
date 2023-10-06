@@ -27,7 +27,7 @@ export default function(options = { enable: true, term: '\\\\page' }) {
             tokens: []
           };
 
-          this.lexer.inline(token.text, token.tokens);
+          this.lexer.blockTokens(token.text, token.tokens);
 
           return token;
         },
