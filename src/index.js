@@ -1,5 +1,12 @@
-export default function(options = { enable: true, term: '\\\\page' }) {
-  // extension code here
+export default function(opts) {
+  const defaultOptions = {
+    enable: true,
+    term: '\\\\page',
+    pageIds: true
+  };
+
+  const options = { ...defaultOptions, ...opts };
+
   if (!options.enable) return false;
 
   /* istanbul ignore else */
@@ -36,7 +43,7 @@ export default function(options = { enable: true, term: '\\\\page' }) {
           return token;
         },
         renderer(token) {
-          return `<div class='page' id='p${token.pageNumber}'>\n${this.parser.parse(token.tokens)}</div>`;
+          return `<div class='page'${options.pageIds ? ` id='p${token.pageNumber}'` : ''}>\n${this.parser.parse(token.tokens)}</div>`;
         }
       }
     ]
