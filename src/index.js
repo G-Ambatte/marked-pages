@@ -36,7 +36,7 @@ export default function(options = { enable: true, term: '\\\\page', pageIds: tru
           return token;
         },
         renderer(token) {
-          return `<div class='page' ${options.pageIds ? "id='p${token.pageNumber}'" : ''}>\n${this.parser.parse(token.tokens)}</div>`;
+          return `<div class='page' ${options.pageIds ? `id='p${token.pageNumber}'` : ''}>\n${this.parser.parse(token.tokens)}</div>`;
         }
       }
     ]
