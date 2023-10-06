@@ -1,4 +1,4 @@
-export default function(options = { enable: true, term: '\\\\page' }) {
+export default function(options = { enable: true, term: '\\\\page', pageIds: true }) {
   // extension code here
   if (!options.enable) return false;
 
@@ -32,7 +32,7 @@ export default function(options = { enable: true, term: '\\\\page' }) {
           return token;
         },
         renderer(token) {
-          return `<div class='page' id='p${token.pageNumber}'>\n${this.parser.parse(token.tokens)}</div>`;
+          return `<div class='page' ${options.pageIds ? 'id='p${token.pageNumber}' : ''}>\n${this.parser.parse(token.tokens)}</div>`;
         }
       }
     ]
