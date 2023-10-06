@@ -38,6 +38,6 @@ describe('markedPages', () => {
 
   test('multiple pages - parser', () => {
     marked.use(markedPages());
-    expect(marked.parse('this is page 1\n\\page\nthis is page 2\n\\page\nthis is page 3')).toBe('<div class=\'page\' id=\'p1\'>\n<p>this is page 1\n</p>\n</div><div class=\'page\' id=\'p2\'>\n<p>this is page 2\n</p>\n</div><div class=\'page\' id=\'p3\'>\n<p>this is page 3</p>\n</div>');
+    expect(marked.parse('this is page 1\n\\page\nthis is page 2\n\\page\nthis is page 3')).toBe('<div class=\'page\' id=\'p1\'>\n<p>this is page 1</p>\n</div><div class=\'page\' id=\'p2\'>\n<p>this is page 2</p>\n</div><div class=\'page\' id=\'p3\'>\n<p>this is page 3</p>\n</div>');
   });
 });
