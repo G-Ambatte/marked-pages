@@ -7,6 +7,7 @@ export default function(options = { enable: true, term: '\\\\page', pageIds: tru
     options.regex = new RegExp(options.term, 'gm');
   }
 
+  let topLevelBlock = true;
   let pageNumber = 0;
   return {
     options() { return options; },
@@ -14,8 +15,9 @@ export default function(options = { enable: true, term: '\\\\page', pageIds: tru
       {
         name: 'pageBlock',
         level: 'block',
-        // start(src) { return options.regex.exec(src); },
+        start(src) { return topLevelBlock; },
         tokenizer(src, tokens) {
+          if (!topLevelBlock) return false;
           const pageArray = src.split(options.regex);
           pageNumber++;
 
@@ -27,7 +29,9 @@ export default function(options = { enable: true, term: '\\\\page', pageIds: tru
             tokens: []
           };
 
-          this.lexer.inline(token.text, token.tokens);
+          topLevelBlock = false;
+          this.lexer.blockTokens(token.text, token.tokens);
+          topLevelBlock = true;
 
           return token;
         },
